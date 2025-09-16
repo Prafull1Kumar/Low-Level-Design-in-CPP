@@ -1,0 +1,55 @@
+#include<iostrm
+
+// Ticket Class which will store the ticket info
+class Ticket{
+    string booking_id; // id of sports,movies
+    string category_name;
+    Time start_time;
+    Time end_time;
+    string SeatType;
+}
+
+class Screen{
+Time start_time;
+Time end_time;
+vector<string> seatType;
+int numberof_seat_left;
+Date date;
+}
+
+class Hall{
+string hall_name;
+vector<Screen> screens
+}
+
+Class Movie{
+string bookid
+string movie_name;
+vector<Hall> halls;
+}
+
+
+
+class Stadium{
+    place
+    Date
+    Time start_time;
+    Time end_time;
+    vector<string> seatType;
+}
+
+Class Sports{
+    string bookid
+    string sport;
+    Stadium stadium;
+}
+
+
+// User Class will have sports,movies throught youcan 
+Class UserAccount{
+    string user_name;
+    vector<Ticket*> tickets;
+    book(Movie movie,Time start_time,Time end_time,String SeatType)
+
+    book(Sport sport,Time start_time,Time end_time,string SeatType);
+}
