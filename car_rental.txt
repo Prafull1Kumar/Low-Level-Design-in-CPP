@@ -1,0 +1,88 @@
+Version 1
+Car Rental
+Requirements
+1) User
+2) Application
+3) Store
+4) Vehicle
+5) Booking 
+6) Payment
+7) Return
+
+
+User
+Member Variable
+  - userId
+  - Name
+  - age
+  - licence
+
+Member Function
+  -  getUserId
+
+Store
+Member Variable
+  - storeId
+  - vector<Vehicle>
+
+Member Function
+  - bookVehicle
+
+Vehicle
+Member Variable
+  - vehicleId  
+  - perDayCost
+  - name
+  - status
+
+Member Function
+
+PricingStrategy
+Member Function
+  - calculatePrice(Vehicle,startDate,EndDate)
+
+
+Booking
+Member Variable
+  - bookingId
+  - Vehicle
+  - duration
+  - startDate
+  - endDate
+  - modeOfPayment Enu {Cash, Online}
+
+Member functuon
+  - cost  
+  - proceedWithPayment
+
+Invoice
+Member Variable
+  - User
+  - Booking 
+  - price
+  - returnDate
+  - Description
+
+Payment
+Member Variable
+  - amount
+  - currency
+  - account
+
+Member Functions
+  - connectToBank
+
+
+Application
+Member Variable
+  - vector<Store>
+  - BookingManager
+  - Payment
+
+Member Variable
+  - bookVehicle
+  - completePayment
+  - generateInvoice
+  - Return
+
+

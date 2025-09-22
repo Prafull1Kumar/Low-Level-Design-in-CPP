@@ -1,0 +1,314 @@
+/* 
+Description: Implementation of a parking lot system with vehicle management.
+
+Requirements:
+
+
+Classes :-
+1) ParkingLot
+2) Car
+3) Floor
+4) ParkingSlot
+5) Ticket
+6) Entrance
+7) Exit
+
+ParkingSlot
+
+- Member Variables
+  - slotId
+  - type: {SMALL, MEDIUM, LARGE}
+  - isEmpty
+  
+- Member Functions
+  - getslotIf
+  - getType
+  - getAvailability
+  - setAvailability
+
+ParkingLot
+
+- Member Variables
+  - vector<ParkingSlot>
+  - lotId
+
+- Member Functions
+  - getLotId
+  - getSLots
+
+Car
+- Member Variables
+  - carId
+  - type
+  
+
+Floor 
+- Member Variables
+  - ParkingLot
+  - floorId
+
+Ticket
+- Member Variables
+  - ticketId
+  - entrytime
+  - price
+  - Car
+  - ParkingLot
+
+Entrance
+- Member Variables
+  - Car
+  - Ticket
+
+  - assignParkingLot -> (assign same type car to same parking lot)
+  - generateTicket
+  - 
+
+Exit
+- Member Variables
+  - Car
+  - Ticket
+
+- Member Functions
+  - unassignParkingLot
+  - calculatePrice
+  - 
+
+*/
+
+Version 2
+
+Classes :-
+1) ParkingLot
+2) Vehicle -> Car, Truck, Bike
+3) Floor
+4) ParkingSlot
+5) Ticket
+6) PricingStrategy
+7) Entrance
+8) Exit
+
+ParkingSlot
+
+- Member Variables
+  - slotId
+  - type: {SMALL, MEDIUM, LARGE}
+  - isEmpty
+  
+- Member Functions
+  - getType
+  - getAvailability
+  - setAvailability
+
+Floor 
+- Member Variables
+  - vector<ParkingSlot>
+  - floorId
+
+- Member Functions
+  - getFloorId
+  - nearestFreeSlotAvailable 
+
+Vehicle
+- Member Variables
+  - vehicleId
+  - VehicleType
+
+- Member Functions
+  - getType
+  - getVehicleId
+
+PricingStrategy
+- Member Variables
+  - map<VehicleType,int> hourlyRate 
+
+- Member Functions
+  - calculatePrice(endTime,Ticket)  
+
+Ticket
+- Member Variables
+  - ticketId
+  - entrytime
+  - Vehicle
+  - ParkingSlot
+
+- Member Functions
+  - getEntryTime
+
+Entrance  
+- Member Variables
+  - ParkingLot
+  - 
+
+- Member Function
+  - assignParkingLot -> (assign same type car to same parking slot)
+  - generateTicket
+  - parkingSlotAvailability
+
+Exit
+- Member Variables
+  - ParkingLot
+
+- Member Functions
+  - unassignParkingLot(endTime,Ticket)
+  - 
+
+ParkingLot
+- Member Variables
+  - vector<Floor>
+  - lotId
+
+- Member Functions
+  - getLotId
+  - getNearestFreeParkingSlots
+  - 
+
+
+Note :-
+1) reserve, occupy, release
+2) Replace isEmpty with {free, occupy, reserve, out_of_Service}
+3) add {lotId, floorId, slotId, hourlyRate, Status} in Ticket
+4)
+
+///
+version 3
+
+Requirements
+- Parking spot should be nearest to Entrance
+- how many entrance? -> 1 entrance and 1 Exit
+  but can have more than 1 
+
+- Different Type of spot -> 2 wheeler and 4 wheeler
+
+- Hourly based charge / Minute based charge
+
+- Floor Parking?
+
+-
+
+Classes :-
+1) ParkingLot
+2) Vehicle -> Car, Truck, Bike
+4) ParkingSlot
+5) Ticket
+6) PricingStrategy
+7) ParkingStrategy
+8) Entrance
+9) Exit
+
+ParkingSlot
+- Member Variables
+  - slotId 
+  - type: {SMALL, MEDIUM, LARGE}
+  - status: {free, occupy, reserve, out_of_Service}
+  
+- Member Functions
+  - getType
+  - getAvailability
+  - setAvailability
+
+Vehicle
+- Member Variables
+  - vehicleId
+  - VehicleType
+
+- Member Functions
+  - getType
+  - getVehicleId
+
+FourWheeler:Vehicle
+
+TwoWheeler:Vehicle
+
+
+PriceStrategy 
+- Member Functions
+  - calculatePrice(endTime,Ticket)  
+  - hourlyRate()
+
+TwoWheelerPriceStrategy:PriceStrategy
+- Member Function
+  - calculatePrice()
+  - hourlyRate()=10
+
+FourWheelerPriceStrategy:PricingStrategy
+- Member Function
+  - calculatePrice()
+  - hourlyRate()=20
+
+
+/*
+Use factory pattern to assign FourWheelerPriceStrategy and TwoWheelerPriceStrategy
+from Exit class
+
+*/
+
+
+
+
+Ticket
+- Member Variables
+  - ticketId
+  - PackingSlot
+  - hourlyRate
+  - Status
+  - entrytime
+  - Vehicle
+
+- Member Functions
+  - getEntryTime
+
+ParkingStrategy
+- Member Variables
+  - priority_queue<ParkingSlot> q;
+
+- Member Function
+  - findSpot
+  - assignParkingSlot -> (assign same type car to same parking slot)
+  - parkingSlotAvailability
+
+NearEntranceGate:ParkingStrategy
+- Member Variables
+  - priority_queue<ParkingSlot> q;
+
+- Member Function
+  - findSpot
+
+PriceStrategyFactory
+- Member Variable
+  - map<Vehicle,PriceStrategy> mp;
+
+- Member Function
+  - getStrategy()
+
+Entrance  
+- Member Variables
+  - gateId
+  - ParkingStrategy
+
+- Member Function
+  - park
+  - generateTicket
+
+Exit
+- Member Variables
+  - ParkingLot
+
+- Member Functions
+  - unassignParkingLot(endTime,Ticket)
+  - 
+
+ParkingLot
+- Member Variables
+  - lotId
+  - Entrance
+  - Exit
+  - map<string,Tickets> activeTicket
+
+- Member Functions
+  - getLotId
+  - enterVehicle
+  - exitVehicle
+
+User
+- userId
