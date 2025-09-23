@@ -23,28 +23,49 @@ Member Function
 Store
 Member Variable
   - storeId
-  - vector<Vehicle>
+  - name
+
+Member Function
+  - storeDetails
+
+Vehicle
+Member Variable
+
+  - vehicleId  
+  - perDayCost
+  - name
+  - Store
+  - status
+  - type
 
 Member Function
   - bookVehicle
 
-Vehicle
-Member Variable
-  - vehicleId  
-  - perDayCost
-  - name
-  - status
+Bike:Vehicle
 
-Member Function
+Car:Vehicle
 
 PricingStrategy
 Member Function
   - calculatePrice(Vehicle,startDate,EndDate)
 
+BikePricingStrategy: PricingStrategy
+
+CarPricingStrategy: PricingStrategy
+
+
+PricingFactory
+Member Variable
+  - map<vehicleType,PricingStrategy> mp;
+
+Member Function
+  - getPricingStrategy(vehicle)  
+
 
 Booking
 Member Variable
   - bookingId
+  - User
   - Vehicle
   - duration
   - startDate
@@ -58,7 +79,7 @@ Member functuon
 Invoice
 Member Variable
   - User
-  - Booking 
+  - BookingId
   - price
   - returnDate
   - Description
@@ -72,11 +93,19 @@ Member Variable
 Member Functions
   - connectToBank
 
+Return 
+Member Variable
+  - User
+  - Vehicle
+  - Description
+
+Member Function
+  - completeTheReturn
 
 Application
 Member Variable
-  - vector<Store>
-  - BookingManager
+  - vector<Vehicle>
+  - Booking
   - Payment
 
 Member Variable
@@ -85,4 +114,122 @@ Member Variable
   - generateInvoice
   - Return
 
+-------------------------------------------------------------
+Version 2
 
+Car Rental
+Requirements
+1) User
+2) Application
+3) Store
+4) Vehicle
+5) Booking 
+6) Payment
+7) Return
+8) Invoice
+
+
+User
+Member Variable
+  - userId
+  - Name
+  - age
+  - licence
+
+Member Function
+  -  getUserId
+
+Store
+Member Variable
+  - storeId
+  - vector<Vehicle> 
+  - name
+
+Member Function
+  - storeDetails
+
+Vehicle
+Member Variable
+
+  - vehicleId  
+  - perDayCost
+  - name
+  - storeId
+  - status
+  - type
+
+Member Function
+  - bookVehicle
+
+Bike:Vehicle
+
+Car:Vehicle
+
+PricingStrategy
+Member Function
+  - calculatePrice(Vehicle,startDate,EndDate)
+
+BikePricingStrategy: PricingStrategy
+
+CarPricingStrategy: PricingStrategy
+
+
+PricingFactory
+Member Variable
+  - map<vehicleType,PricingStrategy> mp;
+
+Member Function
+  - getPricingStrategy(vehicle)  
+
+
+Booking
+Member Variable
+  - bookingId
+  - User
+  - Vehicle
+  - duration
+  - startDate
+  - endDate
+  - modeOfPayment Enu {Cash, Online}
+
+Member functuon
+  - cost  
+  - proceedWithPayment
+
+Invoice
+Member Variable
+  - User
+  - BookingId
+  - price
+  - returnDate
+  - Description
+
+Payment
+Member Variable
+  - amount
+  - currency
+  - account
+
+Member Functions
+  - connectToBank
+
+Return 
+Member Variable
+  - User
+  - Vehicle
+  - Description
+
+Member Function
+  - completeTheReturn
+
+Application
+Member Variable
+  - vector<Vehicle>
+  - Booking
+  - Payment
+
+Member Variable
+  - bookVehicle
+  - completePayment
+  - generateInvoice
+  - Return
