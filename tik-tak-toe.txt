@@ -1,0 +1,45 @@
+Version 1
+
+Classes
+1) Board 
+2) Piece (x,o,$)
+3) Player
+
+Board
+Member Variable
+- n
+- m
+
+DesignBoard1:Board
+
+DesignBoard2:Board
+
+Piece
+Member Variable
+- val
+
+Member Function
+- getPiece()
+
+CrossPiece:Piece
+
+CirclePiece:Piece
+
+Player
+Member Variable
+- Piece
+
+Member Function
+- assignPiece
+
+Game
+Member Variable
+- Board
+- Player1
+- Player2
+- chance
+
+Member Function
+- play(x,y)
+- analyzeGame()
+- 

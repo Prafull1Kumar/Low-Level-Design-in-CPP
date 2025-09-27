@@ -225,7 +225,7 @@ Member Function
 Application
 Member Variable
   - vector<Vehicle>
-  - Booking
+  - vector<Booking>
   - Payment
 
 Member Variable
@@ -233,3 +233,8 @@ Member Variable
   - completePayment
   - generateInvoice
   - Return
+
+
+  // Version 2
+
+You can also have one 
