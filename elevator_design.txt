@@ -1,0 +1,65 @@
+Version 1
+
+Clarification
+- Number of Lift in a building : n
+- Algorithm of Lift
+  1) One button click
+  2) Go with the flow (Enum:{Down,Up,Stale})
+  3) 
+
+ 
+Classes
+- Elevator
+- Building
+- ExternalButton
+- Display
+- InternalButton
+- LiftManager
+- Floor
+
+Display
+ Member Variable
+  - currentFloor
+
+ Member Function
+  - getCurrentFloor()
+
+
+ExternalButton
+ Member Variable
+  - clicked
+  - LiftManager
+
+ Member Function
+  - setClickValue()
+  - getClickValue()
+
+
+InternalButton
+ Member Variable
+  - set<int> floors
+
+ Member Function
+  - setClickValue()
+  - getCurrentFloor()
+
+
+Floor 
+ Member Variable
+  - ExternalButton
+  - floorId
+
+Member Function
+  - clickButton()
+
+
+LiftManager
+ Member Variable
+ - queue<Floor>
+ - 
+
+
+Elevator
+
+
+
