@@ -10,29 +10,74 @@ Clarification
  
 Classes
 - Elevator
+- ElevetorController
 - Building
-- ExternalButton
-- Display
-- InternalButton
-- LiftManager
-- Floor
+- Button -
+- ExternalButton -
+- Display(Observer) 
+- InternalButton -
+- ElevatorAssignStrategy
+- Floor -
+
 
 Display
  Member Variable
   - currentFloor
+  - Elevator
 
  Member Function
-  - getCurrentFloor()
+  - assignCurrentFloor
+  - display
 
 
-ExternalButton
+Floor 
  Member Variable
-  - clicked
-  - LiftManager
+  - floorId
+  - vector<Display>
+  - ExternalButton
+
+Member Function
+  - Click()
+
+Button
+ Member Function
+  - Click()
+
+ExternalButton:Button
+ Member Variable
+  - ElevatorAssignStrategy
 
  Member Function
-  - setClickValue()
-  - getClickValue()
+  - Click(floorID)
+      
+ElevetorController
+  - priority_queue<int> minQ
+  - priority_queue<int> maxQ
+
+InternalButton:Button
+ Member Variable
+  - floorId
+
+ Member Function
+  - Click(Floor,elevatorController)
+
+
+Elevator
+ Member Variable
+  - Display
+  - vector<InternalButton>
+  - ElevetorController
+  - status
+
+ Member Function
+  - click(floorId)
+
+  
+
+
+ElevatorAssignStrategy
+ Member Variable
+  - 
 
 
 InternalButton
@@ -44,22 +89,168 @@ InternalButton
   - getCurrentFloor()
 
 
-Floor 
+Floor
  Member Variable
   - ExternalButton
   - floorId
 
-Member Function
+ Member Function
   - clickButton()
 
 
 LiftManager
  Member Variable
- - queue<Floor>
- - 
+  - queue<Floor>
+  - 
+
+ Member Function
+  - externalButtonOperation(Floor)
+  - internalButtonOperation(Floor) 
 
 
 Elevator
+ Member Variable
+  - InternalButton
+  - Status Enum{"UP","DOWN","STALE"}
+  - Display
 
 
 
+
+Version 2
+
+Class:-
+
+Elevator
+ElevatorDisplay
+ElevatorController
+Button
+Floor
+AssignElevator
+
+
+
+Button
+  Member Variable
+    - val {"UP","DOWN","1","2","3"..}
+    - status Enum{"CLICK","UNCLICK"} 
+
+  Member Function
+    - click()
+    - getValue()
+
+DirectionButton: Button
+  Member Variable
+    - AssignElevator
+
+  Member Function
+    - nearestElevator(floor,direction);
+
+FloorButton: Button
+
+ElevatorDisplay. // Observer design pattern to implement this
+  Member Variable
+    - currentFloor
+
+  Member Function
+    - update()
+
+Floor
+  Member Variable
+    - val
+    - DirectionButton
+
+  Member function
+    - getFloor();
+    - click(DirectionEnum,current)
+
+AssignElevator
+  - Member Variable
+    - vector<Elevator> ele
+    
+  - Member Function
+    - assignElevator(floor){
+      Elevator assignElev;
+      int nearestOne=INT_MAX;
+      for(int i=0;i<ele.size();i++){
+        status=ele[i].getstatus();
+        elevatorFloor=ele[i].getCurrentFloor();
+        if(elevatorFloor>floor && (status=="DOWN" || status=="IDLE")){
+          if(nearestElevator>elevatorFloor-floor){
+            nearestElevator=elevatorFloor-floor;
+            assignElev=ele[i];
+          }
+          else if(nearestElevator<elevatorFloor-floor && (status=="UP" || status=="IDLE")){
+            nearestElevator=-elevatorFloor+floor;
+            assignElev=ele[i];
+          }
+        }
+      }
+      return assignElev;
+    }
+
+
+Elevator
+  Member Variable
+    - vector<FloorButtons>
+    - ElevatorController
+    
+  Member Function
+    - clickFloors(FloorButtons){
+      ElevatorController.click()
+    }
+    - getstatus(){
+      ElevatorController.status
+    }
+    getCurrentFloor(){
+      ElevatorController.ElevatorDisplay.currentFloor
+    }
+  
+
+
+ElevatorController
+  Member Variable
+    - ElevatorDisplay
+    - priority_queue<int> min;
+    - priority_queue<int> max;
+    - status;
+    - Door
+
+  Member function
+    - click(floor){
+      if(status==idle){
+        if(floor>ElevatorDisplay.currentFloor){
+          status="UP";
+          min.push(floor);
+        }
+        else{
+          status="DOWN"
+          max.push(floor);
+        }
+      }
+      else if(status=='DOWN'){
+        if(max.top()<floor){
+          int val=max.pop();
+          status="DOOR OPEN"
+          Door.openDoor();
+          while(Door.status=="CLOSED"){
+
+          }
+
+          ElevatorDisplay.update(val);
+        }
+        else min.push(floor);
+      }
+    }
+
+
+
+I’m drawn to **CareYaya** because it embodies the kind of bold, high-impact environment
+where exceptional people move fast to solve meaningful problems. I’ve always thrived in 
+settings that value speed, ownership, and innovation over bureaucracy, and I believe my 
+background aligns well with that ethos. At **AWS DynamoDB**, I designed a long-polling 
+architecture that reduced empty request overhead by 84%, and I’ve built full-stack systems 
+using **TypeScript, React, Node.js, and cloud infrastructure** that scaled in production. 
+Beyond technical skill, I bring relentless curiosity, intensity, and a drive to build things
+ that challenge convention — qualities that fit naturally with CareYaya’s mission to redefine
+  what’s possible.
