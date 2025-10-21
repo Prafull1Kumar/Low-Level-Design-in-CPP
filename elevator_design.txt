@@ -242,15 +242,3 @@ ElevatorController
         else min.push(floor);
       }
     }
-
-
-
-I’m drawn to **CareYaya** because it embodies the kind of bold, high-impact environment
-where exceptional people move fast to solve meaningful problems. I’ve always thrived in 
-settings that value speed, ownership, and innovation over bureaucracy, and I believe my 
-background aligns well with that ethos. At **AWS DynamoDB**, I designed a long-polling 
-architecture that reduced empty request overhead by 84%, and I’ve built full-stack systems 
-using **TypeScript, React, Node.js, and cloud infrastructure** that scaled in production. 
-Beyond technical skill, I bring relentless curiosity, intensity, and a drive to build things
- that challenge convention — qualities that fit naturally with CareYaya’s mission to redefine
-  what’s possible.
