@@ -1,3 +1,57 @@
-#include<iostream>
-using namespace std;
+Design BookMyShow
 
+Requirements :-
+1) Allow user to search movies
+2) Select theatres and showtimes
+3) Book tickets while ensuring seat availability
+4) Payment handling
+
+Classes
+
+1) User
+2) Theatre
+3) Screen
+3) Movies
+4) Showtime
+5) Seat
+6) Booking(Payment)
+7) BookMyShow
+ 
+Seat
+- id 
+- isEmpty
+
+- bookSeat()
+
+Movies
+- id
+- name
+- description
+
+Theatre
+- id
+- name
+- list<Screen> screens
+
+- selectScreen(id)
+
+Screen
+- id
+- list<Showtime> showtimes
+
+- selectShowTime(startTime,endTime)
+
+Showtime
+- startTime
+- endTime
+- date
+- Movie
+- list<Seat>
+
+- bookSeat()
+- processForPayment()
+
+Booking
+- bookingid
+- 
+- details
