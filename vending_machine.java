@@ -6,45 +6,56 @@ The C++ program simulates a vending machine that allows user to select and purch
 items. It includes features such as display
 
 Class
+Item
+- name
+- ItemType
+- price
 
+Shelf
+- vector<Item> items
+- code
 
 Inventory
-- items
+- vector<Shelf> shelves
 - addItem()
 
-VendingMachineContext
+Coin
+- denomination
+
+VendingMachine
 - currentState
 - inventory
-- itemCode
+- list<Coin> coins
 - paymentStrategy
-
+- insertCoin(Coin coin)
+- setState(VendingMachineState st)
 
 VendingMachineState
 
 1) IdleState 
-   - next()
-        if(out of stock) ->OutOfStockState
-        else if(money inserted) -> HasMoneyState 
-        else ->IdleState 
+    - clickonInsertCoinButton() -> HasMoneyState
 
 2) HasMoneyState
-    -next()
-        if(selection made) ->SelectionState
-        else if(money returned) ->IdleState
-        else -> HasMoneyState
+
+    - cancelorRefund() -> IdleState
+    - coinInserted(VendingMachine vm, Coin coin) -> {
+        vm.insertCoin(coin);
+        vm.setState(new HasMoneyState());
+    } 
+    - clickOnStartProductSelectionButton(VendingMachine vm) -> {
+        vm.setState(new SelectionState());
+    }
 
 3) SelectionState
-    - next()
-        if(item available) -> DispenseState
-        else -> OutOfStockState
+    - chooseItem(VendingMachine vm,string code) -> { 
+        Item item = vm.getInventory().getItemByCode(code);
+        if(item.price > vm.getTotalInsertedAmount) -> IndsufficientFunds();
+        else vm.setState(new DispenseState());
+        
+    - InsufficientFunds() -> HasMoneyState
 
 4) DispenseState
-    - next()
-        return to IdleState
-
-5) OutOfStockState
-    - next()
-        return to IdleState
+    - dispenseItem() -> IdleState
 
 
 **/
