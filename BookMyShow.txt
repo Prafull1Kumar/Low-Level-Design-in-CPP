@@ -28,9 +28,11 @@ Movies
 - name
 - description
 
+
 Theatre
 - id
 - name
+- city 
 - list<Screen> screens
 
 - selectScreen(id)
@@ -49,9 +51,68 @@ Showtime
 - list<Seat>
 
 - bookSeat()
-- processForPayment()
 
 Booking
 - bookingid
-- 
+- list<Seat> bookedSeats
+- startTime
 - details
+- status:{PENDING,CONFIRMED}
+- price
+
+- processForPayment()
+
+
+BookMyShow
+- list<Movies> movies
+- list<Theatre> threatres
+- list<Booking> booking
+
+- searchThreatresByCity(city)
+- searchMovies()
+
+- 
+
+
+Version 2
+
+Classes
+
+Movie
+MovieController
+Threatre
+ThreatreController
+Screen 
+Show 
+Booking
+BookMyShow
+City 
+
+Movie
+id
+name
+Duration
+
+Threatre
+id
+name
+list<screen>
+
+Screen
+id
+list<Seat>
+
+Seat{
+    id
+    status:{premiun,normal}
+}
+
+Showtime
+id
+startTime
+Movie
+
+
+Movie
+map<city,list<movie>> mp;
+list<movie>
